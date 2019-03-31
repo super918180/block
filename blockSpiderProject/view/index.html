@@ -1,0 +1,78 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>testproject</title>
+    <!-- 将bootstrap cdn url放到这里 -->
+    <link rel="stylesheet" href="./lib/bootstrap.min.css">
+    <link rel="stylesheet" href='./lib/jquery-ui-1.11.0.css'>
+    <link rel="stylesheet" href="./lib/style.css">
+    <link rel="stylesheet" href="./lib/el-ui-index.css">
+
+</head>
+
+<body>
+
+    <div id="app">
+        <div id="box">
+            <el-menu :default-active="activeIndex2" class="el-menu-demo" mode="horizontal" @select="handleSelect"
+                background-color="#545c64" text-color="#fff" active-text-color="#ffd04b">
+                <el-menu-item index="1" @click="searchNews">最新</el-menu-item>
+                <el-menu-item index="2">政策</el-menu-item>
+                <el-menu-item index="3">其他</el-menu-item>
+                <el-menu-item index="4" @click="getKeyWords">关键词列表</el-menu-item>
+            </el-menu>
+            <div v-if="showTable==1">
+                <div class="search">
+
+                    <input type="text" id='search' class="searchBox" v-model='searchVal'>
+
+                    <el-date-picker v-model="startTime" type="date" placeholder="开始日期">
+                    </el-date-picker>
+                    <el-date-picker v-model="endTime" type="date" placeholder="结束日期">
+                    </el-date-picker>
+                    <button class='btn' @click="search">搜索</button>
+                </div>
+                <el-table :data="article_catalog" style="width: 100%">
+                    <el-table-column prop='title' label='文章标题' width='600'>
+                        <template slot-scope="scope">
+                            <el-button @click="handleClick(scope.row)" type="text" size="small">{{scope.row.title}}
+                            </el-button>
+                        </template>
+                    </el-table-column>
+                    <el-table-column prop='artTime' label="日期" width='150'></el-table-column>
+                    <el-table-column fixed="right" label="操作" width="100">
+                        <template slot-scope="scope">
+                            <el-button size="mini" type="danger" @click="handleDelete(scope.row)">删除</el-button>
+                        </template>
+                    </el-table-column>
+                </el-table>
+                <el-pagination background layout="prev, pager, next" :total=total :current-page=currentPage
+                    @prev-click="pageChange" @next-click="pageChange" @current-change='pageChange'>
+                </el-pagination>
+            </div>
+            <div v-if="showTable==4">
+                <div class="search">
+                    <span class='searchBox' id='search' style="width: 100%">更新时间：</span>
+
+                    <lable type='text'>{{createTime}}</lable>
+                </div>
+                <ul v-for='(k,v) in keyWords '>{{v}}:{{k}}</ul>
+                <div id="createKeyWords">
+                    <el-button type="primary" @click="createKeyWords">生成关键词</el-button>
+                </div>
+                <!-- </div> -->
+
+            </div>
+
+        </div>
+    </div>
+    <script src='./lib/jquery.min.js'></script>
+    <script src='./lib/vue.js'></script>
+    <script src="./lib/axios.min.js"></script>
+    <script src='./lib/bootstrap.min.js'></script>
+    <script src="./js/main.js"></script>
+    <script src='./lib/el-ui-index.js'></script>
+</body>
+
+</html>

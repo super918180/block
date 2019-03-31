@@ -1,0 +1,56 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-size: 14px;
+    font-family: "微软雅黑";
+}
+
+#box {
+    width: 900px;
+    height: auto;
+    border: 1px solid #ccc;
+    margin: 50px auto;
+    padding: 10px;
+}
+
+.search {
+    width: 880px;
+    height: 100px;
+    text-align: center;
+}
+
+.searchBox {
+    width: 260px;
+    height: 40px;
+    outline: none;
+    text-indent: 10px;
+    margin-right: 20px;
+}
+
+.btn {
+    width: 100px;
+    height: 50px;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.goodsheet {
+    width: 800px;
+    height: auto;
+    border: 1px solid #eee;
+}
+
+.goodsheet tr td,
+.goodsheet tr th {
+    width: 33%;
+    border: 1px solid #eee;
+    padding: 5px 10px;
+    text-align: left;
+}
+
+.goodsheet tr th span {
+    background: #ff9900;
+    padding: 0 6px;
+    color: #fff;
+    cursor: pointer;
+}
