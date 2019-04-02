@@ -11,6 +11,10 @@ class OdailySpider(scrapy.Spider):
 	allowed_domains = ['www.odaily.com']
 	start_urls = ['https://www.odaily.com/api/pp/api/app-front/feed-stream?feed_id=280&b_id=&per_page=15']
 	org_url = "https://www.odaily.com/"
+	spiderEndTime='2019-03-01'
+	mReg = '分钟前'
+	hReg = '小时前'
+	dReg = '天前'
 	
 	def parse(self, response):
 		data = json.loads(response.text)['data']
@@ -18,13 +22,15 @@ class OdailySpider(scrapy.Spider):
 		id = 0
 		for remArticle in itemList:
 			remArticleItem = BlockchainprojectItem()
+			remArticleItem['type']='recommend'
 			remArticleItem['title'] = remArticle['title']
 			remArticleItem['artUrl'] = 'https://www.odaily.com/post/' + str(remArticle['entity_id'])
 			remArticleItem['sourceUrl'] = self.org_url
 			remArticleItem['artTime'] = remArticle['published_at']
 			id = remArticle['id']
-			yield remArticleItem
-			yield scrapy.Request(remArticleItem['artUrl'], callback=self.parse_detail)
+			if 	remArticleItem['artTime']>=self.spiderEndTime:
+				yield remArticleItem
+				yield scrapy.Request(remArticleItem['artUrl'], callback=self.parse_detail)
 		if id != 0:
 			next_link = 'https://www.odaily.com/api/pp/api/app-front/feed-stream?feed_id=280&b_id=' + str(
 				id) + '&per_page=10'

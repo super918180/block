@@ -17,19 +17,19 @@
         <div id="box">
             <el-menu :default-active="activeIndex2" class="el-menu-demo" mode="horizontal" @select="handleSelect"
                 background-color="#545c64" text-color="#fff" active-text-color="#ffd04b">
-                <el-menu-item index="1" @click="searchNews">最新</el-menu-item>
-                <el-menu-item index="2">政策</el-menu-item>
-                <el-menu-item index="3">其他</el-menu-item>
+                <el-menu-item index="1" @click="searchLatestNews">最新</el-menu-item>
+                <el-menu-item index="2" @click="searchPolicyNews">政策</el-menu-item>
+                <el-menu-item index="3" @click='searchOtherNews'>其他</el-menu-item>
                 <el-menu-item index="4" @click="getKeyWords">关键词列表</el-menu-item>
             </el-menu>
-            <div v-if="showTable==1">
+            <div v-if="showTable==1|| showTable==2">
                 <div class="search">
 
                     <input type="text" id='search' class="searchBox" v-model='searchVal'>
 
-                    <el-date-picker v-model="startTime" type="date" placeholder="开始日期">
+                    <el-date-picker type="date" placeholder="开始日期" format="yyyy 年 MM 月 dd 日"  value-format="yyyy-MM-dd HH:mm:ss" v-model='searchStartTime'>
                     </el-date-picker>
-                    <el-date-picker v-model="endTime" type="date" placeholder="结束日期">
+                    <el-date-picker type="date" placeholder="结束日期"  format="yyyy 年 MM 月 dd 日"  value-format="yyyy-MM-dd HH:mm:ss" v-model='searchEndTime'>
                     </el-date-picker>
                     <button class='btn' @click="search">搜索</button>
                 </div>

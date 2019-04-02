@@ -62,8 +62,8 @@ CONCURRENT_REQUESTS_PER_IP = 0
 # Enable or disable downloader middlewares
 # See https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
 DOWNLOADER_MIDDLEWARES = {
-	# 'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware':123,
-	# 'BlockchainProject.middlewares.IPPOOlS' : 125,
+	'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware':110,
+	'BlockchainProject.middlewares.IPPOOlS': 125,
 	'BlockchainProject.middlewares.BlockchainprojectDownloaderMiddleware': 543,
 }
 
@@ -111,9 +111,9 @@ ITEM_PIPELINES = {
 # 	# {"ipaddr": "218.82.33.225:53853"},
 # 	# {"ipaddr": "223.167.190.17:42789"}
 # ]
-IPPOOLPath='D:\\test.txt'
+IPPOOLPath = 'D:\\test.txt'
 
-HTTPERROR_ALLOWED_CODES = [403]
+HTTPERROR_ALLOWED_CODES = [403,404]
 
 mongodb_host = '127.0.0.1'
 mongodb_port = 27017

@@ -17,14 +17,14 @@ $(document).ready(function () {
                 keyWords: '',
                 showTable: 1,
                 createTime: '',
-                startTime: '',
-                endTime: '',
+                searchStartTime: '',
+                searchEndTime: '',
+                type:'',
             }
 
         },
         mounted() {
             this.searchQuery(1)
-           
         },
         methods: {
             search: function () {
@@ -33,7 +33,7 @@ $(document).ready(function () {
             searchQuery: function (page) {
                 var self = this;
                 //使用axios进行请求
-                axios.get('http://localhost:3000/search?searchType=' + self.searchType + '&articleTitle=' + self.searchVal + '&startTime=' + self.startTime + '&endTime=' + self.endTime + '&page=' + (page ? page : 0) + '&size=' + self.size).then(function (res) {
+                axios.get('http://localhost:3000/search?type=' + self.type + '&articleTitle=' + self.searchVal + '&startTime=' + self.searchStartTime + '&endTime=' + self.searchEndTime + '&page=' + (page ? page : 0) + '&size=' + self.size).then(function (res) {
                     self.article_catalog = res.data.content;
                     self.total = res.data.totalElements;
                 })
@@ -43,28 +43,21 @@ $(document).ready(function () {
                 this.searchQuery(1)
             },
             pageChange: function (e) {
-
                 this.searchQuery(e)
             },
             handleClick: function (e) {
                 window.open(e.artUrl, target = '_blank')
             },
-            searchNews: function () {
-                this.searchVal = '';
-                this.changeTable(1);
-                this.searchQuery(1)
-            },
-            changeTable: function (type) {
-                this.showTable = type;
+            changeTable: function (showType) {
+                this.showTable = showType;
             },
             createKeyWords: function () {
                 var self=this;
                 axios.get("http://localhost:3000/createKeyWords").then(function (res) {
-                debugger 
-                if(res.data=='success'){
-                    self.getKeyWords()
-                 }  
-                console.log(res);
+                    console.log(res);
+                    if(res.data=='success'){
+                        self.getKeyWords();
+                    }
                 })
             },
             handleSelect(key, keyPath) {
@@ -87,7 +80,25 @@ $(document).ready(function () {
                 })
                 this.searchQuery(1)
             },
-            
+            searchLatestNews:function(){
+               this.searchVal='';
+                this.changeTable(1);
+                this.type='recommend';
+                this.searchQuery(1);
+            },
+            searchPolicyNews:function(){
+                this.searchVal='';
+                this.changeTable(1);
+                this.type='policy';
+                this.searchQuery(1);
+            },
+            searchOtherNews:function(){
+                this.searchVal='';
+                this.type='';
+                this.changeTable(1);
+                this.searchQuery(1);
+            }
+
         },
 
 

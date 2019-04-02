@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 import scrapy
-
+from BlockchainProject.items import ArticleImageItem
 import requests
-# from bson import binary
+from bson import binary
 
 
 class AaSpider(scrapy.Spider):
