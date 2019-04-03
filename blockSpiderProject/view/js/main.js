@@ -82,12 +82,16 @@ $(document).ready(function () {
             },
             searchLatestNews:function(){
                this.searchVal='';
+               this.searchStartTime='';
+               this.searchEndTime='';
                 this.changeTable(1);
                 this.type='recommend';
                 this.searchQuery(1);
             },
             searchPolicyNews:function(){
                 this.searchVal='';
+                this.searchStartTime='';
+                this.searchEndTime='';
                 this.changeTable(1);
                 this.type='policy';
                 this.searchQuery(1);
@@ -95,6 +99,8 @@ $(document).ready(function () {
             searchOtherNews:function(){
                 this.searchVal='';
                 this.type='';
+                this.searchStartTime='';
+                this.searchEndTime='';
                 this.changeTable(1);
                 this.searchQuery(1);
             }

@@ -7,7 +7,7 @@
 
 import scrapy
 
-
+#文章目录
 class BlockchainprojectItem(scrapy.Item):
 	# define the fields for your item here like:
 	# name = scrapy.Field()
@@ -18,13 +18,13 @@ class BlockchainprojectItem(scrapy.Item):
 	sourceUrl = scrapy.Field()
 	artTime = scrapy.Field()
 
-
+#文章内容
 class ArticleBodyItem(scrapy.Item):
 	title = scrapy.Field()
 	introduce = scrapy.Field()
 	body = scrapy.Field()
 
-
+#文章图片
 class ArticleImageItem(scrapy.Item):
 	title = scrapy.Field()
 	artUrl = scrapy.Field()

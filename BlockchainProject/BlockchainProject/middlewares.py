@@ -34,9 +34,9 @@ class IPPOOlS(object):
 		thisip = random.choice(self.IPPOOL)
 		print("当前使用IP是：" + thisip.rstrip('\n'))
 		request.meta["proxy"] = "http://" + thisip.rstrip('\n')
-		proxy_user_pass = "1013982354@qq.com:jiangying"
-		encoded_user_pass = base64.b64encode(proxy_user_pass.encode(encoding='utf-8')).decode("utf-8")
-		request.headers['Proxy-Authorization'] = 'Basic ' + encoded_user_pass
+		# proxy_user_pass = "1013982354@qq.com:jiangying"
+		# encoded_user_pass = base64.b64encode(proxy_user_pass.encode(encoding='utf-8')).decode("utf-8")
+		# request.headers['Proxy-Authorization'] = 'Basic ' + encoded_user_pass
 
 class BlockchainprojectSpiderMiddleware(object):
 	# Not all methods need to be defined. If a method is not defined,

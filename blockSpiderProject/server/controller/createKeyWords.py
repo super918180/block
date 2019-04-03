@@ -13,7 +13,7 @@ for i in coll_article_catalog.find({}):
 titleStr=",".join(titleList)
 # print(titleStr)
 dict={}
-for k, v in jieba.analyse.textrank(titleStr, withWeight=True, topK=100):
+for k, v in jieba.analyse.extract_tags(titleStr, withWeight=True, topK=100):
 		dict[k]=v
 		# print('%s,%s' % (k, v))
 time=time.strftime("%Y-%m-%d %H:%M:%S",time.localtime())
