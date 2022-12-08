@@ -10,7 +10,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "element-ui": "^2.6.3",
-    "express": "^4.16.4",
+    "express": "^4.18.2",
     "mongoose": "^5.4.19"
   },
   "description": ""
